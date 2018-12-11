@@ -1,0 +1,27 @@
+<div [formGroup]="form">
+  <label [attr.for]="field.name">{{field.name | titlecase}}</label>
+
+  <div [ngSwitch]="field.type">
+    <div *ngSwitchCase="CONTROL_TYPES.string">
+        <input [formControlName]="field.name" [id]="field.name" type="text" [placeholder]="field.name">
+        <span style="color: red;" *ngIf="isControlInvalid(field.name, 'required')">
+          Field {{field.name}} is required
+        </span>
+    </div>
+
+    <div *ngSwitchCase="CONTROL_TYPES.age">
+        <input [formControlName]="field.name" [id]="field.name" type="number" [placeholder]="field.name">
+        <span style="color: red;" *ngIf="isControlInvalid(field.name, 'required')">
+          Field {{field.name}} is required
+        </span>
+        <span style="color: red;" *ngIf="isControlInvalid(field.name, 'min')">
+          Min value is {{form.get(field.name)['errors']['min']['min']}}
+        </span>
+        <span style="color: red;" *ngIf="isControlInvalid(field.name, 'max')">
+          Max value is {{form.get(field.name)['errors']['max']['max']}}
+        </span>
+    </div>
+
+
+  </div>
+</div>

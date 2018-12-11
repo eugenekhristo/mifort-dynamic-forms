@@ -1,0 +1,15 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" >
+
+    <div *ngFor="let field of formFields">
+
+      <app-dynamic-control [field]="field" [form]="form" (input)="onValueChanges()"></app-dynamic-control>
+
+    </div>
+
+    <div>
+      <button class="waves-effect waves-light btn" type="submit">Save</button>
+    </div>
+  </form>
+
+</div>
